@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load easy_mask  %}
+
+{% block conteudo %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CEP</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for diarista in diaristas  %}
+            <tr>
+                <td>{{diarista.id}}</td>
+                <td>{{diarista.nome_completo}}</td>
+                <td>{{diarista.email}}</td>
+                <td>{{diarista.cep | cep }}</td>
+                <td>
+                    <a href="{% url 'editar_diarista' diarista.id %}" class="btn btn-primary" >Editar</a>
+
+                    <!-- Botão para acionar modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado">
+                      Remover
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="TituloModalCentralizado">Tem certeza?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Essa operação não poderá ser desfeita!
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary">
+                                <a href="{% url 'deletar_diarista' diarista.id %}" style="color: azure" >Sim</a>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'cadastrar_diarista' %}" class="btn btn-primary">Cadastrar</a>
+{% endblock conteudo %}
