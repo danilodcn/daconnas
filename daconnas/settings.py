@@ -93,24 +93,32 @@ WSGI_APPLICATION = 'daconnas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.environ.get('DB_NAME'),
-#         'USER': os.environ.get('DB_USER'),
-#         'PASSWORD': os.environ.get('DB_PASS'),
-#         'HOST': os.environ.get("HOST"),
-#         'PORT': '5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
 
-# print(DATABASES)
+DATABASE_URL = os.getenv("DATABASE_URL")
+protocol, url = DATABASE_URL.split("://")
+user, host, port_dbase = url.split(":")
+password, host = host.split("@")
+port, dbase = port_dbase.split("/")
+
+print(user, password, host, port, dbase, sep="\n")
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': dbase,
+        'USER': user,
+        'PASSWORD': password,
+        'HOST': host,
+        'PORT': port,
+    }
+}
+
+print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
