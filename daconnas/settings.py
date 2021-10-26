@@ -47,8 +47,6 @@ INSTALLED_APPS = [
     'easy_mask',
     "rest_framework",
     "corsheaders",
-    'web',
-    'api',
     "core"
 ]
 
