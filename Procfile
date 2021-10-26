@@ -1,1 +1,1 @@
-web: python -m gunicorn "ediarista_python.wsgi"
+web: gunicorn "ediarista_python.wsgi"
