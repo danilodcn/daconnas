@@ -1,1 +1,1 @@
-web: gunicorn "ediarista_python.wsgi"
+web: gunicorn "daconnas.wsgi"
