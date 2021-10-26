@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        <!-- {{ form|crispy }} -->
+        
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{{btn_name}}</button>
+    </form>
+    <div style="padding-bottom: 30px"></div>
+
+{% endblock content %}

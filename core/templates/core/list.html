@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            {% for field_name in field_names %}
+              <th>{{field_name}}</th>
+            {% endfor %}
+            <th>Actions</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for field_values in data %}
+        
+            <tr>
+              {% for value in field_values %}
+                <td>{{value}}</td>
+              {% endfor %}
+
+                <td>
+                    {% with id=field_values.0 %}
+                     <a href="/web/update/{{name}}/{{id}}" class="btn btn-primary" >Edit</a>
+                    
+
+                    <!-- Botão para acionar modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado">
+                      Remove
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="TituloModalCentralizado">Tem certeza?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Essa operação não poderá ser desfeita!
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary">
+                                <a href="/web/delete/{{name}}/{{id}}" style="color: azure" >Sim</a>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endwith %}
+                </td>
+            </tr>
+            
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/web/create/{{name}}" class="btn btn-primary">Register</a>
+{% endblock content %}
