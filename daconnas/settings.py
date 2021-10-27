@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'easy_mask',
     "rest_framework",
     "corsheaders",
-    "core"
+    "core",
+    "api"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -104,7 +105,7 @@ user, host, port_dbase = url.split(":")
 password, host = host.split("@")
 port, dbase = port_dbase.split("/")
 
-print(user, password, host, port, dbase, sep="\n")
+# print(user, password, host, port, dbase, sep="\n")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -116,7 +117,7 @@ DATABASES = {
     }
 }
 
-print(DATABASES)
+# print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
