@@ -22,15 +22,3 @@ class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Topic
         fields = "__all__"
-
-
-
-class PublicationsSerializer(serializers.ModelSerializer):
-    author = UserSerializer()
-    speaker = SpeakerSerializer()
-    topic = TopicSerializer()
-    post = PostSerializer()
-
-    class Meta:
-        model = models.Publication
-        fields = ["published_at", "visualizations", "author", "speaker", "topic", "post"]

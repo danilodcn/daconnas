@@ -23,10 +23,10 @@ class TopicForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        exclude = ["id", "visualizations"]
+        exclude = ["id"]
 
 
 class PublicationForm(forms.ModelForm):
     class Meta:
         model = Publication
-        exclude = ["id"]
+        exclude = ["id", "visualizations"]
