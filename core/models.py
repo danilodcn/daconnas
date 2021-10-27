@@ -8,7 +8,6 @@ class Post(models.Model):
     title = models.CharField(max_length=60, null=False, blank=False)
     description = models.TextField(default="", blank=False, null=True)
     content = models.TextField(default="", blank=False, null=True)
-    visualizations = models.IntegerField(blank=False, null=False, default=0)
     create_at = models.DateTimeField(auto_now=True, blank=False, null=False)
 
 
@@ -20,7 +19,7 @@ class User(models.Model):
     image = models.ImageField(null=False)
     author = models.BooleanField(default=False, blank=False, null=False)
 
-    posts = models.ManyToManyField(Post, through="Publication")
+    # posts = models.ManyToManyField(Post, through="Publication")
 
 
 class Speaker(models.Model):
@@ -31,14 +30,14 @@ class Speaker(models.Model):
     content = models.TextField(default="", blank=False, null=True)
     published = models.BooleanField(default=False, blank=False, null=False)
 
-    posts = models.ManyToManyField(Post, through="Publication")
+    # posts = models.ManyToManyField(Post, through="Publication")
 
 
 class Topic(models.Model):
     # id = models.IntegerField(primary_key=True, auto_created=True, null=False, blank=False)
     name = models.CharField(max_length=60, null=False, blank=False)
 
-    posts = models.ManyToManyField(Post, through="Publication")
+    # posts = models.ManyToManyField(Post, through="Publication")
 
 
 class Publication(models.Model):
@@ -47,4 +46,5 @@ class Publication(models.Model):
     speaker = models.ForeignKey(Speaker, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    visualizations = models.IntegerField(blank=False, null=False, default=0)
     published_at = models.DateTimeField(auto_now=True, blank=False, null=False)
