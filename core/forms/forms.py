@@ -29,4 +29,4 @@ class PostForm(forms.ModelForm):
 class PublicationForm(forms.ModelForm):
     class Meta:
         model = Publication
-        exclude = ["id", "visualizations"]
+        exclude = ["id", "visualizations", "code"]

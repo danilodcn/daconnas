@@ -1,7 +1,5 @@
-import datetime
-
 from django.db import models
-
+import uuid
 
 class Post(models.Model):
     # id = models.IntegerField(primary_key=True, auto_created=True, null=False, blank=False)
@@ -40,6 +38,7 @@ class Topic(models.Model):
     # posts = models.ManyToManyField(Post, through="Publication")
 
 
+
 class Publication(models.Model):
     # id = models.IntegerField(primary_key=True, auto_created=True, null=False, blank=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -48,3 +47,5 @@ class Publication(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     visualizations = models.IntegerField(blank=False, null=False, default=0)
     published_at = models.DateTimeField(auto_now=True, blank=False, null=False)
+    code = models.UUIDField(unique=True, default=uuid.uuid4)
+    url = models.URLField(blank=False, null=False)
